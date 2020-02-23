@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import services from '../../services/api';
+import MoviesList from '../movies-list/MoviesList';
 
 class HomePage extends Component {
   state = {
@@ -21,19 +21,12 @@ class HomePage extends Component {
   render() {
     //console.log(this.state.movies);
     const { movies } = this.state;
+    const { location } = this.props;
     return (
-      <ul>
-        {movies.map(elem => (
-          <li key={elem.id}>
-            <Link to={{
-							pathname:`movies/${elem.id}`,
-							state: { from: this.props.location },
-						}}>
-							{elem.title || elem.name}
-						</Link>
-          </li>
-        ))}
-      </ul>
+      <section className="section">
+        <h2 className="title is-2">Популярные фильмы</h2>
+        <MoviesList movies={movies} location={location} />
+      </section>
     );
   }
 }

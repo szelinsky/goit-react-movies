@@ -37,8 +37,27 @@ export default {
       console.log(error);
       throw new Error(error);
     }
+  },
+
+  async getCast(movieId) { 
+    try {
+      const data = await axios.get(`movie/${movieId}/credits`, { params });
+      return data.data.cast;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  },
+
+  async getReviews(movieId) { //330457
+    try {
+      const data = await axios.get(`movie/${movieId}/reviews?api_key=f3ac9d74d34b181f3c57c772b32b78e5&language=en-US`);
+      return data.data.results;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
   }
 };
 
-// детально о фильме
-//https://api.themoviedb.org/3/movie/{id!315635}?api_key=f3ac9d74d34b181f3c57c772b32b78e5&language=en-US
+
